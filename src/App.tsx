@@ -1,7 +1,9 @@
-function App() {
-  return (
-    <h1>Hello, World!</h1>
-  );
+import { Home } from './pages/Home';
+
+function App(): JSX.Element {
+	return (
+		<Home />
+	);
 }
 
 export default App;
