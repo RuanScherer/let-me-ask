@@ -37,19 +37,19 @@ export function AuthContextProvider({ children }: AuthContextProviderProps): JSX
 	}
 
 	function fillUserData(user: firebase.User | null) {
-		if (user) {
-			const { displayName, photoURL, uid } = user;
+		if (!user) return;
 
-			if (!displayName || !photoURL) {
-				throw new Error('Missing information from Google Account');
-			}
+		const { displayName, photoURL, uid } = user;
 
-			setUser({
-				id: uid,
-				name: displayName,
-				avatar: photoURL
-			});
+		if (!displayName || !photoURL) {
+			throw new Error('Missing information from Google Account');
 		}
+
+		setUser({
+			id: uid,
+			name: displayName,
+			avatar: photoURL
+		});
 	}
 
 	return (
