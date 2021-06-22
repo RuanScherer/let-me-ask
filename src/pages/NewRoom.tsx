@@ -1,12 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { useAuth } from '../hooks/useAuth';
 import Illustration from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 import '../styles/auth.scss';
+import { useEffect } from 'react';
 
 export function NewRoom(): JSX.Element {
-	// const { user } = useAuth();
+	const { user } = useAuth();
+	const history = useHistory();
+
+	useEffect(() => {
+		if (!user) {
+			history.goBack();
+		}
+	}, [user]);
 
 	return (
 		<div id="page-auth">
