@@ -1,9 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
 import { useRoom } from '../hooks/useRoom';
+import { database } from '../services/firebase';
 import logoImg from '../assets/images/logo.svg';
+import deleteIcon from '../assets/images/delete.svg';
 import '../styles/room.scss';
 
 type AdminRoomParams = {
@@ -14,6 +16,25 @@ export function AdminRoom(): JSX.Element {
 	const params = useParams<AdminRoomParams>();
 	const roomId = params.id;
 	const { title, questions } = useRoom(roomId);
+	const history = useHistory();
+
+	async function handleDeleteQuestion(questionId: string) {
+		if (!questionId) return;
+
+		const confirmed = window.confirm('Tem certeza que deseja excluir essa pergunta?');
+
+		if (confirmed) {
+			await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+		}
+	}
+
+	async function handleCloseRoom() {
+		await database.ref(`rooms/${roomId}`).update({
+			closedAt: new Date()
+		});
+
+		history.push('/');
+	}
 
 	return (
 		<div id="page-room">
@@ -23,7 +44,7 @@ export function AdminRoom(): JSX.Element {
 
 					<div>
 						<RoomCode roomCode={roomId} />
-						<Button isOutlined>Encerrar sala</Button>
+						<Button isOutlined onClick={handleCloseRoom}>Encerrar sala</Button>
 					</div>
 				</div>
 			</header>
@@ -36,7 +57,17 @@ export function AdminRoom(): JSX.Element {
 
 				<ul className="question-list">
 					{questions.map(question => (
-						<Question content={question.content} author={question.author} key={question.id} />
+						<Question
+							content={question.content}
+							author={question.author}
+							key={question.id}>
+							<button
+								type="button"
+								onClick={() => handleDeleteQuestion(question.id)}
+							>
+								<img src={deleteIcon} alt="" />
+							</button>
+						</Question>
 					))}
 				</ul>
 			</main>

@@ -32,6 +32,11 @@ export function Home(): JSX.Element {
 			return;
 		}
 
+		if (roomRef.val().closedAt) {
+			alert('A sala já está fechada!');
+			return;
+		}
+
 		history.push(`salas/${roomCode}`);
 	}
 
