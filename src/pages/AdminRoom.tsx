@@ -9,13 +9,13 @@ import { database } from '../services/firebase';
 import logoImg from '../assets/images/logo.svg';
 import '../styles/room.scss';
 
-type RoomParams = {
+type AdminRoomParams = {
 	id: string;
 }
 
-export function Room(): JSX.Element {
+export function AdminRoom(): JSX.Element {
 	const { user } = useAuth();
-	const params = useParams<RoomParams>();
+	const params = useParams<AdminRoomParams>();
 	const roomId = params.id;
 	const [newQuestion, setNewQuestion] = useState('');
 	const { title, questions } = useRoom(roomId);
@@ -45,7 +45,11 @@ export function Room(): JSX.Element {
 			<header>
 				<div className="content">
 					<img src={logoImg} alt="" />
-					<RoomCode roomCode={roomId} />
+
+					<div>
+						<RoomCode roomCode={roomId} />
+						<Button isOutlined>Encerrar sala</Button>
+					</div>
 				</div>
 			</header>
 
@@ -54,34 +58,6 @@ export function Room(): JSX.Element {
 					<h1>{title}</h1>
 					{questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
 				</div>
-
-				<form onSubmit={handleCreateNewQuestion}>
-					<textarea
-						id="new-question"
-						name="new-question"
-						value={newQuestion}
-						onChange={event => setNewQuestion(event.target.value)}
-						placeholder="O que você quer perguntar?"
-						required
-					>
-					</textarea>
-
-					<div className="form-footer">
-						{user
-							? (
-								<div className="user-info">
-									<img src={user.avatar} alt={user.name} />
-									<span>{user.name}</span>
-								</div>
-							)
-							: (
-								<span>Para enviar uma pergunta, <button>faça seu login.</button></span>
-							)
-						}
-
-						<Button type="submit" disabled={!user}>Enviar pergunta</Button>
-					</div>
-				</form>
 
 				<ul className="question-list">
 					{questions.map(question => (
