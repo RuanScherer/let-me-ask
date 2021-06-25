@@ -69,6 +69,7 @@ export function Home(): JSX.Element {
 							name="room-code"
 							value={roomCode}
 							onChange={event => setRoomCode(event.target.value)}
+							data-testid="room-code"
 							required
 						/>
 
