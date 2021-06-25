@@ -6,6 +6,8 @@ import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 import logoImg from '../assets/images/logo.svg';
 import deleteIcon from '../assets/images/delete.svg';
+import checkIcon from '../assets/images/check.svg';
+import answerIcon from '../assets/images/answer.svg';
 import '../styles/room.scss';
 
 type AdminRoomParams = {
@@ -17,6 +19,18 @@ export function AdminRoom(): JSX.Element {
 	const roomId = params.id;
 	const { title, questions } = useRoom(roomId);
 	const history = useHistory();
+
+	async function handleCheckQuestionAsAnswered(questionId: string) {
+		await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+			isAnswered: true
+		});
+	}
+
+	async function handleHighlightQuestion(questionId: string) {
+		await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+			isHighlighted: true
+		});
+	}
 
 	async function handleDeleteQuestion(questionId: string) {
 		if (!questionId) return;
@@ -60,7 +74,28 @@ export function AdminRoom(): JSX.Element {
 						<Question
 							content={question.content}
 							author={question.author}
-							key={question.id}>
+							key={question.id}
+							isAnswered={question.isAnswered}
+							isHighlighted={question.isHighlighted}
+						>
+							{!question.isAnswered && (
+								<>
+									<button
+										type="button"
+										onClick={() => handleCheckQuestionAsAnswered(question.id)}
+									>
+										<img src={checkIcon} alt="" />
+									</button>
+
+									<button
+										type="button"
+										onClick={() => handleHighlightQuestion(question.id)}
+									>
+										<img src={answerIcon} alt="" />
+									</button>
+								</>
+							)}
+
 							<button
 								type="button"
 								onClick={() => handleDeleteQuestion(question.id)}

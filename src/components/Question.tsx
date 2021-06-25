@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import classnames from 'classnames';
 import '../styles/question.scss';
 
 type QuestionProps = {
@@ -8,21 +9,35 @@ type QuestionProps = {
 		avatar: string;
 	},
 	children?: ReactNode;
+	isAnswered?: boolean;
+	isHighlighted?: boolean;
 }
 
-export function Question(props: QuestionProps): JSX.Element {
+export function Question({
+	content,
+	author,
+	isAnswered = false,
+	isHighlighted = false,
+	children
+}: QuestionProps): JSX.Element {
 	return (
-		<li className="question">
-			<p>{props.content}</p>
+		<li
+			className={classnames(
+				'question',
+				{ answered: isAnswered },
+				{ highlighted: isHighlighted && !isAnswered }
+			)}
+		>
+			<p>{content}</p>
 
 			<footer>
 				<div className="user-info">
-					<img src={props.author.avatar} alt="" />
-					<span>{props.author.name}</span>
+					<img src={author.avatar} alt="" />
+					<span>{author.name}</span>
 				</div>
 
 				<div>
-					{props.children}
+					{children}
 				</div>
 			</footer>
 		</li>
