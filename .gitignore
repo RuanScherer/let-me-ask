@@ -22,4 +22,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# firebase
+.firebaserc
+/.firebase
+firebase.json
+database.rules.json
+
 todo.md
