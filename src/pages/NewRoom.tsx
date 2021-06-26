@@ -54,6 +54,7 @@ export function NewRoom(): JSX.Element {
 							name="room-name"
 							value={roomName}
 							onChange={event => setRoomName(event.target.value)}
+							data-testid="room-name"
 							required
 						/>
 
