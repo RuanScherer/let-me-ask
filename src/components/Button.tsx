@@ -9,6 +9,7 @@ export function Button({ isOutlined = false, ...rest }: ButtonProps): JSX.Elemen
 	return (
 		<button
 			className={`button ${isOutlined ? 'outlined' : ''}`}
+			data-testid="button"
 			{...rest}
 		/>
 	);
