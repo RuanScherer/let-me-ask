@@ -27,12 +27,17 @@ export function Question({
 				{ answered: isAnswered },
 				{ highlighted: isHighlighted && !isAnswered }
 			)}
+			data-testid="question"
 		>
 			<p>{content}</p>
 
 			<footer>
 				<div className="user-info">
-					<img src={author.avatar} alt="" />
+					<img
+						src={author.avatar}
+						alt=""
+						data-testid="user-avatar"
+					/>
 					<span>{author.name}</span>
 				</div>
 
