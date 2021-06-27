@@ -1,3 +1,13 @@
+:root {
+	--default-text-color: #29292e;
+	--light-text-color: #737380;
+	--line-color: #a8a8b3;
+	--primary-color: #835afd;
+	--secondary-color: #e559f9;
+	--light-background-color: #fefefe;
+	--white-color: #fff;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -6,7 +16,7 @@
 
 body {
 	background-color: #f8f8f8;
-	color: #29292e;
+	color: var(--default-text-color);
 }
 
 body,

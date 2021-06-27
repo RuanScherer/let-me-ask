@@ -1,5 +1,5 @@
 .question {
-	background-color: #fefefe;
+	background-color: var(--light-background-color);
 	border-radius: 8px;
 	box-shadow: 0 2px 12px rgba(255, 174, 174, 0.04);
 	padding: 24px;
@@ -10,10 +10,10 @@
 
 	&.highlighted {
 		background-color: #f4f0ff;
-		border: 1px solid #835afd;
+		border: 1px solid var(--primary-color);
 
 		footer .user-info span {
-			color: #29292e;
+			color: var(--default-text-color);
 		}
 	}
 
@@ -22,7 +22,7 @@
 	}
 
 	p {
-		color: #29292e;
+		color: var(--default-text-color);
 	}
 
 	footer {
@@ -43,7 +43,7 @@
 
 			span {
 				margin-left: 8px;
-				color: #737380;
+				color: var(--light-text-color);
 				font-size: 14px;
 			}
 		}
@@ -62,14 +62,14 @@
 			&.like-button {
 				display: flex;
 				align-items: flex-end;
-				color: #737380;
+				color: var(--light-text-color);
 				gap: 8px;
 
 				&.liked {
-					color: #835afd;
+					color: var(--primary-color);
 
 					svg path {
-						stroke: #835afd;
+						stroke: var(--primary-color);
 					}
 				}
 			}
