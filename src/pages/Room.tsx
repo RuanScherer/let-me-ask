@@ -1,5 +1,5 @@
-import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { FormEvent, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
@@ -15,10 +15,17 @@ type RoomParams = {
 
 export function Room(): JSX.Element {
 	const { user } = useAuth();
+	const history = useHistory();
 	const params = useParams<RoomParams>();
 	const roomId = params.id;
 	const [newQuestion, setNewQuestion] = useState('');
-	const { title, questions } = useRoom(roomId);
+	const { room, title, questions } = useRoom(roomId);
+
+	useEffect(() => {
+		if (room.closedAt) {
+			history.goBack();
+		}
+	}, [room]);
 
 	async function handleCreateNewQuestion(event: FormEvent) {
 		event.preventDefault();
