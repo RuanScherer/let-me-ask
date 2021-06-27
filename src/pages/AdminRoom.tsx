@@ -78,6 +78,8 @@ export function AdminRoom(): JSX.Element {
 							isAnswered={question.isAnswered}
 							isHighlighted={question.isHighlighted}
 						>
+							{question.likeCount > 0 && <span className="like-count">{question.likeCount} like(s)</span>}
+
 							{!question.isAnswered && (
 								<>
 									<button

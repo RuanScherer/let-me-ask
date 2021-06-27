@@ -53,6 +53,14 @@
 			gap: 16px;
 		}
 
+		.like-count {
+			display: flex;
+			align-items: center;
+			color: var(--primary-color);
+			font-weight: 500;
+			font-size: 14px;
+		}
+
 		button {
 			border: 0;
 			background: transparent;
