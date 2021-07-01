@@ -1,14 +1,14 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { Button } from '../components/Button';
-import { Question } from '../components/Question';
-import { RoomCode } from '../components/RoomCode';
-import { useRoom } from '../hooks/useRoom';
-import { database } from '../services/firebase';
-import logoImg from '../assets/images/logo.svg';
-import deleteIcon from '../assets/images/delete.svg';
-import checkIcon from '../assets/images/check.svg';
-import answerIcon from '../assets/images/answer.svg';
-import '../styles/room.scss';
+import { Button } from '../../../components/Button/';
+import { Question } from '../../../components/Question/';
+import { RoomCode } from '../../../components/RoomCode/';
+import { useRoom } from '../../../hooks/useRoom';
+import { database } from '../../../services/firebase';
+import logoImg from '../../../assets/images/logo.svg';
+import deleteIcon from '../../../assets/images/delete.svg';
+import checkIcon from '../../../assets/images/check.svg';
+import answerIcon from '../../../assets/images/answer.svg';
+import '../index.scss';
 
 type AdminRoomParams = {
 	id: string;

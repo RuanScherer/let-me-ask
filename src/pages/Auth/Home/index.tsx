@@ -1,12 +1,12 @@
 import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { Button } from '../components/Button';
-import Illustration from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
-import googleIconImage from '../assets/images/google-icon.svg';
-import '../styles/auth.scss';
-import { database } from '../services/firebase';
+import { useAuth } from '../../../hooks/useAuth';
+import { Button } from '../../../components/Button';
+import Illustration from '../../../assets/images/illustration.svg';
+import logoImg from '../../../assets/images/logo.svg';
+import googleIconImage from '../../../assets/images/google-icon.svg';
+import '../index.scss';
+import { database } from '../../../services/firebase';
 
 export function Home(): JSX.Element {
 	const [roomCode, setRoomCode] = useState('');

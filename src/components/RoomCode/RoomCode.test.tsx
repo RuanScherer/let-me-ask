@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { RoomCode } from './RoomCode';
+import { RoomCode } from './';
 
 describe('Room Code Component', () => {
 	test('Show room code', () => {

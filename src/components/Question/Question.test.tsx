@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Question } from './Question';
+import { Question } from './';
 
 describe('Question Component', () => {
 	const content = 'Como funcionam os hooks do react?';
