@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth';
 import { Button } from '../../../components/Button/';
 import { Question } from '../../../components/Question/';
 import { RoomCode } from '../../../components/RoomCode/';
@@ -17,8 +19,15 @@ type AdminRoomParams = {
 export function AdminRoom(): JSX.Element {
 	const params = useParams<AdminRoomParams>();
 	const roomId = params.id;
-	const { title, questions } = useRoom(roomId);
+	const { room, title, questions } = useRoom(roomId);
 	const history = useHistory();
+	const { user } = useAuth();
+
+	useEffect(() => {
+		if (room.closedAt || room.authorId !== user?.id) {
+			history.goBack();
+		}
+	}, [room, user]);
 
 	async function handleCheckQuestionAsAnswered(questionId: string) {
 		await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
@@ -48,6 +57,12 @@ export function AdminRoom(): JSX.Element {
 		});
 
 		history.push('/');
+	}
+
+	if (!room || !user) {
+		return (
+			<div></div>
+		);
 	}
 
 	return (

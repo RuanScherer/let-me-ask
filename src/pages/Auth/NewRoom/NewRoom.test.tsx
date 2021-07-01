@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import { NewRoom } from './NewRoom';
+import { NewRoom } from './';
 
 describe('New Room Page', () => {
 

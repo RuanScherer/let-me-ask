@@ -59,6 +59,12 @@ export function Room(): JSX.Element {
 		}
 	}
 
+	if (!room) {
+		return (
+			<div></div>
+		);
+	}
+
 	return (
 		<div id="page-room">
 			<header>
