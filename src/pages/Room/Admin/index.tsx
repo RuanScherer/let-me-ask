@@ -46,9 +46,10 @@ export function AdminRoom(): JSX.Element {
 		});
 	}
 
-	async function handleHighlightQuestion(questionId: string) {
+	async function handleToggleQuestionHighlight(questionId: string, isHighlighted: boolean) {
+		console.log(isHighlighted);
 		await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-			isHighlighted: true
+			isHighlighted: !isHighlighted
 		});
 	}
 
@@ -116,7 +117,7 @@ export function AdminRoom(): JSX.Element {
 										<img src={checkIcon} alt="" />
 									</StyledQuestionButton>
 
-									<StyledQuestionButton onClick={() => handleHighlightQuestion(question.id)}>
+									<StyledQuestionButton onClick={() => handleToggleQuestionHighlight(question.id, question.isHighlighted)}>
 										<img src={answerIcon} alt="" />
 									</StyledQuestionButton>
 								</>
