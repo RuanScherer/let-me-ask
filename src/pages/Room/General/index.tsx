@@ -3,6 +3,8 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { Button } from '../../../components/Button/';
 import { Question } from '../../../components/Question/';
 import { RoomCode } from '../../../components/RoomCode/';
+import { Header } from '../../../components/Header';
+import { TotalQuestionsIndicator } from '../../../components/TotalQuestionsIndicator';
 import { useAuth } from '../../../hooks/useAuth';
 import { useRoom } from '../../../hooks/useRoom';
 import { database } from '../../../services/firebase';
@@ -11,8 +13,7 @@ import {
 	StyledQuestionsList,
 	StyledRoomInfoContainer,
 	StyledRoomName,
-	StyledRoomPageContainer,
-	StyledRoomQuestionsCounter
+	StyledRoomPageContainer
 } from '../styles';
 import {
 	StyledRoomFormFooter,
@@ -20,7 +21,6 @@ import {
 	StyledRoomQuestionInput,
 	StyledRoomUserInfo
 } from './styles';
-import { Header } from '../../../components/Header';
 
 type RoomParams = {
 	id: string;
@@ -87,11 +87,7 @@ export function Room(): JSX.Element {
 			<StyledRoomPageContainer>
 				<StyledRoomInfoContainer>
 					<StyledRoomName>{title}</StyledRoomName>
-					{questions.length > 0 && (
-						<StyledRoomQuestionsCounter>
-							{questions.length} pergunta(s)
-						</StyledRoomQuestionsCounter>
-					)}
+					<TotalQuestionsIndicator questionsCount={questions.length} />
 				</StyledRoomInfoContainer>
 
 				<form onSubmit={handleCreateNewQuestion}>

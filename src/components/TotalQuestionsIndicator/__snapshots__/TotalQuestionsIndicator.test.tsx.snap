@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Total Questions Indicator Component Snapshot must be always the same 1`] = `
+<span
+  class="sc-bdnxRM fVHjYQ"
+>
+  5
+   pergunta(s)
+</span>
+`;

@@ -4,20 +4,20 @@ import { useAuth } from '../../../hooks/useAuth';
 import { Button } from '../../../components/Button/';
 import { Question } from '../../../components/Question/';
 import { RoomCode } from '../../../components/RoomCode/';
+import { Header } from '../../../components/Header';
+import { TotalQuestionsIndicator } from '../../../components/TotalQuestionsIndicator';
 import { StyledQuestionButton, StyledQuestionLikeCount } from '../../../components/Question/styles';
 import {
 	StyledQuestionsList,
 	StyledRoomInfoContainer,
 	StyledRoomName,
 	StyledRoomPageContainer,
-	StyledRoomQuestionsCounter
 } from '../styles';
 import { useRoom } from '../../../hooks/useRoom';
 import { database } from '../../../services/firebase';
 import deleteIcon from '../../../assets/images/delete.svg';
 import checkIcon from '../../../assets/images/check.svg';
 import answerIcon from '../../../assets/images/answer.svg';
-import { Header } from '../../../components/Header';
 
 type AdminRoomParams = {
 	id: string;
@@ -85,11 +85,8 @@ export function AdminRoom(): JSX.Element {
 			<StyledRoomPageContainer>
 				<StyledRoomInfoContainer>
 					<StyledRoomName>{title}</StyledRoomName>
-					{questions.length > 0 && (
-						<StyledRoomQuestionsCounter>
-							{questions.length} pergunta(s)
-						</StyledRoomQuestionsCounter>
-					)}
+
+					<TotalQuestionsIndicator questionsCount={questions.length} />
 				</StyledRoomInfoContainer>
 
 				<StyledQuestionsList>
