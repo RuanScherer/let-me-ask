@@ -6,8 +6,6 @@ import { Question } from '../../../components/Question/';
 import { RoomCode } from '../../../components/RoomCode/';
 import { StyledQuestionButton, StyledQuestionLikeCount } from '../../../components/Question/styles';
 import {
-	StyledHeaderContainer,
-	StyledHeaderContent,
 	StyledQuestionsList,
 	StyledRoomInfoContainer,
 	StyledRoomName,
@@ -16,10 +14,10 @@ import {
 } from '../styles';
 import { useRoom } from '../../../hooks/useRoom';
 import { database } from '../../../services/firebase';
-import logoImg from '../../../assets/images/logo.svg';
 import deleteIcon from '../../../assets/images/delete.svg';
 import checkIcon from '../../../assets/images/check.svg';
 import answerIcon from '../../../assets/images/answer.svg';
+import { Header } from '../../../components/Header';
 
 type AdminRoomParams = {
 	id: string;
@@ -79,16 +77,10 @@ export function AdminRoom(): JSX.Element {
 
 	return (
 		<>
-			<StyledHeaderContainer>
-				<StyledHeaderContent>
-					<img src={logoImg} alt="" />
-
-					<div>
-						<RoomCode roomCode={roomId} />
-						<Button isOutlined onClick={handleCloseRoom}>Encerrar sala</Button>
-					</div>
-				</StyledHeaderContent>
-			</StyledHeaderContainer>
+			<Header>
+				<RoomCode roomCode={roomId} />
+				<Button isOutlined onClick={handleCloseRoom}>Encerrar sala</Button>
+			</Header>
 
 			<StyledRoomPageContainer>
 				<StyledRoomInfoContainer>

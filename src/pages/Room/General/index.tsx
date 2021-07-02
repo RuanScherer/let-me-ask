@@ -8,8 +8,6 @@ import { useRoom } from '../../../hooks/useRoom';
 import { database } from '../../../services/firebase';
 import { StyledQuestionButton } from '../../../components/Question/styles';
 import {
-	StyledHeaderContainer,
-	StyledHeaderContent,
 	StyledQuestionsList,
 	StyledRoomInfoContainer,
 	StyledRoomName,
@@ -22,7 +20,7 @@ import {
 	StyledRoomQuestionInput,
 	StyledRoomUserInfo
 } from './styles';
-import logoImg from '../../../assets/images/logo.svg';
+import { Header } from '../../../components/Header';
 
 type RoomParams = {
 	id: string;
@@ -81,15 +79,12 @@ export function Room(): JSX.Element {
 	}
 
 	return (
-		<StyledRoomPageContainer>
-			<StyledHeaderContainer>
-				<StyledHeaderContent>
-					<img src={logoImg} alt="" />
-					<RoomCode roomCode={roomId} />
-				</StyledHeaderContent>
-			</StyledHeaderContainer>
+		<>
+			<Header>
+				<RoomCode roomCode={roomId} />
+			</Header>
 
-			<main>
+			<StyledRoomPageContainer>
 				<StyledRoomInfoContainer>
 					<StyledRoomName>{title}</StyledRoomName>
 					{questions.length > 0 && (
@@ -154,7 +149,7 @@ export function Room(): JSX.Element {
 						</Question>
 					))}
 				</StyledQuestionsList>
-			</main>
-		</StyledRoomPageContainer>
+			</StyledRoomPageContainer>
+		</>
 	);
 }
