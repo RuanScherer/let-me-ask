@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Button } from '../../../components/Button/';
 import { Question } from '../../../components/Question/';
 import { RoomCode } from '../../../components/RoomCode/';
@@ -120,7 +120,7 @@ export function Room(): JSX.Element {
 							)
 							: (
 								<StyledRoomLoginAlert>
-									Para enviar uma pergunta, <button>faça seu login.</button>
+									Para enviar uma pergunta, <Link to="/">faça seu login.</Link>
 								</StyledRoomLoginAlert>
 							)
 						}
