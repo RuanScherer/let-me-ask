@@ -4,13 +4,22 @@ import { useAuth } from '../../../hooks/useAuth';
 import { Button } from '../../../components/Button/';
 import { Question } from '../../../components/Question/';
 import { RoomCode } from '../../../components/RoomCode/';
+import { StyledQuestionButton, StyledQuestionLikeCount } from '../../../components/Question/styles';
+import {
+	StyledHeaderContainer,
+	StyledHeaderContent,
+	StyledQuestionsList,
+	StyledRoomInfoContainer,
+	StyledRoomName,
+	StyledRoomPageContainer,
+	StyledRoomQuestionsCounter
+} from '../styles';
 import { useRoom } from '../../../hooks/useRoom';
 import { database } from '../../../services/firebase';
 import logoImg from '../../../assets/images/logo.svg';
 import deleteIcon from '../../../assets/images/delete.svg';
 import checkIcon from '../../../assets/images/check.svg';
 import answerIcon from '../../../assets/images/answer.svg';
-import '../index.scss';
 
 type AdminRoomParams = {
 	id: string;
@@ -24,8 +33,10 @@ export function AdminRoom(): JSX.Element {
 	const { user } = useAuth();
 
 	useEffect(() => {
-		if (room.closedAt || room.authorId !== user?.id) {
-			history.goBack();
+		if (room && user) {
+			if (room.closedAt || room.authorId !== user?.id) {
+				history.goBack();
+			}
 		}
 	}, [room, user]);
 
@@ -66,25 +77,29 @@ export function AdminRoom(): JSX.Element {
 	}
 
 	return (
-		<div id="page-room">
-			<header>
-				<div className="content">
+		<>
+			<StyledHeaderContainer>
+				<StyledHeaderContent>
 					<img src={logoImg} alt="" />
 
 					<div>
 						<RoomCode roomCode={roomId} />
 						<Button isOutlined onClick={handleCloseRoom}>Encerrar sala</Button>
 					</div>
-				</div>
-			</header>
+				</StyledHeaderContent>
+			</StyledHeaderContainer>
 
-			<main>
-				<div className="room-title">
-					<h1>{title}</h1>
-					{questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
-				</div>
+			<StyledRoomPageContainer>
+				<StyledRoomInfoContainer>
+					<StyledRoomName>{title}</StyledRoomName>
+					{questions.length > 0 && (
+						<StyledRoomQuestionsCounter>
+							{questions.length} pergunta(s)
+						</StyledRoomQuestionsCounter>
+					)}
+				</StyledRoomInfoContainer>
 
-				<ul className="question-list">
+				<StyledQuestionsList>
 					{questions.map(question => (
 						<Question
 							content={question.content}
@@ -93,36 +108,27 @@ export function AdminRoom(): JSX.Element {
 							isAnswered={question.isAnswered}
 							isHighlighted={question.isHighlighted}
 						>
-							{question.likeCount > 0 && <span className="like-count">{question.likeCount} like(s)</span>}
+							{question.likeCount > 0 && <StyledQuestionLikeCount>{question.likeCount} like(s)</StyledQuestionLikeCount>}
 
 							{!question.isAnswered && (
 								<>
-									<button
-										type="button"
-										onClick={() => handleCheckQuestionAsAnswered(question.id)}
-									>
+									<StyledQuestionButton onClick={() => handleCheckQuestionAsAnswered(question.id)}>
 										<img src={checkIcon} alt="" />
-									</button>
+									</StyledQuestionButton>
 
-									<button
-										type="button"
-										onClick={() => handleHighlightQuestion(question.id)}
-									>
+									<StyledQuestionButton onClick={() => handleHighlightQuestion(question.id)}>
 										<img src={answerIcon} alt="" />
-									</button>
+									</StyledQuestionButton>
 								</>
 							)}
 
-							<button
-								type="button"
-								onClick={() => handleDeleteQuestion(question.id)}
-							>
+							<StyledQuestionButton onClick={() => handleDeleteQuestion(question.id)}>
 								<img src={deleteIcon} alt="" />
-							</button>
+							</StyledQuestionButton>
 						</Question>
 					))}
-				</ul>
-			</main>
-		</div>
+				</StyledQuestionsList>
+			</StyledRoomPageContainer>
+		</>
 	);
 }

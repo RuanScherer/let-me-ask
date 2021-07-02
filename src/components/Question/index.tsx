@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import classnames from 'classnames';
-import './index.scss';
+import { StyledQuestion, StyledQuestionFooter, StyledQuestionText, StyledUserInfo } from './styles';
 
 type QuestionProps = {
 	content: string;
@@ -21,30 +21,29 @@ export function Question({
 	children
 }: QuestionProps): JSX.Element {
 	return (
-		<li
+		<StyledQuestion
 			className={classnames(
-				'question',
 				{ answered: isAnswered },
 				{ highlighted: isHighlighted && !isAnswered }
 			)}
 			data-testid="question"
 		>
-			<p>{content}</p>
+			<StyledQuestionText>{content}</StyledQuestionText>
 
-			<footer>
-				<div className="user-info">
+			<StyledQuestionFooter>
+				<StyledUserInfo>
 					<img
 						src={author.avatar}
 						alt=""
 						data-testid="user-avatar"
 					/>
 					<span>{author.name}</span>
-				</div>
+				</StyledUserInfo>
 
 				<div>
 					{children}
 				</div>
-			</footer>
-		</li>
+			</StyledQuestionFooter>
+		</StyledQuestion>
 	);
 }

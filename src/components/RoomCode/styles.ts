@@ -1,4 +1,6 @@
-.room-code {
+import styled from 'styled-components';
+
+export const StyledRoomCode = styled.button`
 	height: 40px;
 	border-radius: 8px;
 	overflow: hidden;
@@ -32,4 +34,4 @@
 			filter: brightness(0.9);
 		}
 	}
-}
+`;

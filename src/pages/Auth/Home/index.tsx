@@ -2,11 +2,18 @@ import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
 import { Button } from '../../../components/Button';
+import { database } from '../../../services/firebase';
+import {
+	StyledAuthPage,
+	StyledAuthPageBanner,
+	StyledAuthPageForm,
+	StyledAuthPageMainContainer,
+	StyledAuthPageMainContent
+} from '../styles';
+import { StyledCreateRoomButton, StyledSeparator } from './styles';
 import Illustration from '../../../assets/images/illustration.svg';
 import logoImg from '../../../assets/images/logo.svg';
 import googleIconImage from '../../../assets/images/google-icon.svg';
-import '../index.scss';
-import { database } from '../../../services/firebase';
 
 export function Home(): JSX.Element {
 	const [roomCode, setRoomCode] = useState('');
@@ -41,27 +48,27 @@ export function Home(): JSX.Element {
 	}
 
 	return (
-		<div id="page-auth">
-			<aside>
+		<StyledAuthPage>
+			<StyledAuthPageBanner>
 				<img src={Illustration} alt="" />
 				<strong>Toda pergunta tem uma resposta.</strong>
 				<p>Aprenda e compartilhe conhecimento com outras pessoas</p>
-			</aside>
+			</StyledAuthPageBanner>
 
-			<main>
-				<div className="main-content">
+			<StyledAuthPageMainContainer>
+				<StyledAuthPageMainContent>
 					<img src={logoImg} alt="" />
 
-					<button className="create-room" onClick={handleCreateRoom}>
+					<StyledCreateRoomButton onClick={handleCreateRoom}>
 						<img src={googleIconImage} alt="" />
 						Crie sua sala com o Google
-					</button>
+					</StyledCreateRoomButton>
 
-					<div className="separator">
+					<StyledSeparator>
 						ou entre em uma sala
-					</div>
+					</StyledSeparator>
 
-					<form onSubmit={handleJoinRoom}>
+					<StyledAuthPageForm onSubmit={handleJoinRoom}>
 						<input
 							type="text"
 							placeholder="Digite o código da sala"
@@ -74,9 +81,9 @@ export function Home(): JSX.Element {
 						/>
 
 						<Button type="submit">Entrar na sala</Button>
-					</form>
-				</div>
-			</main>
-		</div>
+					</StyledAuthPageForm>
+				</StyledAuthPageMainContent>
+			</StyledAuthPageMainContainer>
+		</StyledAuthPage>
 	);
 }

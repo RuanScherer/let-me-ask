@@ -36,14 +36,14 @@ type QuestionType = {
 }
 
 type UseRoomData = {
-	room: RoomType;
+	room: RoomType | undefined;
 	title: string;
 	questions: QuestionType[];
 }
 
 export function useRoom(roomId: string): UseRoomData {
 	const { user } = useAuth();
-	const [room, setRoom] = useState<RoomType>({} as RoomType);
+	const [room, setRoom] = useState<RoomType | undefined>();
 	const [questions, setQuestions] = useState<QuestionType[]>([]);
 	const [title, setTitle] = useState('');
 
@@ -66,7 +66,6 @@ export function useRoom(roomId: string): UseRoomData {
 			});
 
 			parsedQuestions = parsedQuestions.sort((a, b) => b.likeCount - a.likeCount);
-			console.log(parsedQuestions);
 
 			setRoom(firebaseRoom);
 			setTitle(firebaseRoom.title);
