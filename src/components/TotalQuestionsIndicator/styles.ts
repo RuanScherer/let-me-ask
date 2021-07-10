@@ -8,6 +8,7 @@ export const StyledRoomQuestionsCounter = styled.span`
 	color: var(--white-color);
 	font-weight: 500;
 	font-size: .9rem;
+	text-align: center;
 
 	@media screen and (max-width: 450px) {
 		margin-left: 0;
