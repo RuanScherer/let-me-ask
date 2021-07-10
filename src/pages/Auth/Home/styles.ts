@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledSeparator = styled.div`
-	font-size: 14px;
+	font-size: .95rem;
 	color: var(--line-color);
-	margin: 32px 0;
+	margin: 2rem 0;
 	display: flex;
 	align-items: center;
 
@@ -12,7 +12,7 @@ export const StyledSeparator = styled.div`
 		flex: 1;
 		height: 1px;
 		background-color: var(--line-color);
-		margin-right: 16px;
+		margin-right: 1rem;
 	}
 
 	&::after {
@@ -20,13 +20,13 @@ export const StyledSeparator = styled.div`
 		flex: 1;
 		height: 1px;
 		background-color: var(--line-color);
-		margin-left: 16px;
+		margin-left: 1rem;
 	}
 `;
 
 export const StyledCreateRoomButton = styled.button`
-	margin-top: 64px;
-	height: 50px;
+	margin-top: 4rem;
+	height: 3.2rem;
 	border-radius: 8px;
 	font-weight: 500;
 	background-color: #ea4335;
@@ -41,7 +41,7 @@ export const StyledCreateRoomButton = styled.button`
 	transition: filter 0.2s;
 
 	img {
-		margin-right: 8px;
+		margin-right: .5rem;
 	}
 
 	&:hover {

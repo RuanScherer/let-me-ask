@@ -11,7 +11,7 @@ export function RoomCode(props: RoomCodeProps): JSX.Element {
 	}
 
 	return (
-		<StyledRoomCode onClick={copyRoomCodeToClipboard}>
+		<StyledRoomCode onClick={copyRoomCodeToClipboard} title="Copiar código da sala">
 			<div>
 				<img src={copyImg} alt="" />
 			</div>

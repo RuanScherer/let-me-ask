@@ -9,10 +9,10 @@ export const StyledQuestion = styled.li`
 	background-color: var(--light-background-color);
 	border-radius: 8px;
 	box-shadow: 0 2px 12px rgba(255, 174, 174, 0.04);
-	padding: 24px;
+	padding: 1.5rem;
 
 	& + & {
-		margin: 8px 0;
+		margin: .5rem 0;
 	}
 
 	&.highlighted {
@@ -39,11 +39,21 @@ export const StyledQuestionFooter = styled.footer`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 24px;
+	margin-top: 1.5rem;
 
 	> div {
 		display: flex;
-		gap: 16px;
+		gap: 1rem;
+	}
+
+	@media screen and (max-width: 450px) {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.1rem;
+
+		> div:nth-child(2) {
+			align-self: flex-end;
+		}
 	}
 `;
 
@@ -52,7 +62,8 @@ export const StyledQuestionLikeCount = styled.span`
 	align-items: center;
 	color: var(--primary-color);
 	font-weight: 500;
-	font-size: 14px;
+	font-size: .95rem;
+	text-align: center;
 `;
 
 export const StyledQuestionButton = styled.button.attrs({ type: 'button' }) <StyledQuestionButtonProps>`
@@ -65,7 +76,7 @@ export const StyledQuestionButton = styled.button.attrs({ type: 'button' }) <Sty
 		display: flex;
 		align-items: flex-end;
 		color: var(--light-text-color);
-		gap: 8px;
+		gap: .5rem;
 	`}
 
 	${props => props.likeButton && props.liked && `
@@ -86,14 +97,14 @@ export const StyledUserInfo = styled.div`
 	align-items: center;
 
 	img {
-		width: 32px;
-		height: 32px;
+		width: 2rem;
+		height: 2rem;
 		border-radius: 50%;
 	}
 
 	span {
-		margin-left: 8px;
+		margin-left: .5rem;
 		color: var(--light-text-color);
-		font-size: 14px;
+		font-size: .95rem;
 	}
 `;

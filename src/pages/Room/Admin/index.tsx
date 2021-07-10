@@ -79,7 +79,7 @@ export function AdminRoom(): JSX.Element {
 		<>
 			<Header>
 				<RoomCode roomCode={roomId} />
-				<Button isOutlined onClick={handleCloseRoom}>Encerrar sala</Button>
+				<Button isOutlined onClick={handleCloseRoom}>Fechar sala</Button>
 			</Header>
 
 			<StyledRoomPageContainer>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledAuthPage = styled.div`
 	display: flex;
 	align-items: stretch;
-	height: 100vh;
+	min-height: 100vh;
 `;
 
 export const StyledAuthPageBanner = styled.aside`
@@ -16,30 +16,34 @@ export const StyledAuthPageBanner = styled.aside`
 	flex-direction: column;
 	justify-content: center;
 
-	padding: 120px 80px;
+	padding: 7.5rem 5rem;
 
 	img {
-		max-width: 320px;
+		max-width: 20rem;
 	}
 
 	strong {
-		font: 700 36px "Poppins", sans-serif;
-		line-height: 42px;
-		margin-top: 16px;
+		font: 700 2.25rem "Poppins", sans-serif;
+		line-height: 2.6rem;
+		margin-top: 1rem;
 	}
 
 	p {
-		font-size: 24px;
-		line-height: 32px;
-		margin-top: 16px;
+		font-size: 1.5rem;
+		line-height: 2rem;
+		margin-top: 1rem;
 		color: #f8f8f8;
+	}
+
+	@media screen and (max-width: 980px) {
+		display: none;
 	}
 `;
 
 export const StyledAuthPageMainContainer = styled.main`
 	flex: 8;
 
-	padding: 0 32px;
+	padding: 0 2rem;
 
 	display: flex;
 	align-items: center;
@@ -60,22 +64,22 @@ export const StyledAuthPageMainContent = styled.div`
 `;
 
 export const StyledAuthPageMainTitle = styled.h2`
-	font-size: 24px;
-	margin: 64px 0 24px;
+	font-size: 1.5rem;
+	margin: 4rem 0 1.5rem;
 	font-family: "Poppins", sans-serif;
 `;
 
 export const StyledAuthPageForm = styled.form`
 	input {
-		height: 50px;
+		height: 3.2rem;
 		border-radius: 8px;
-		padding: 0 16px;
+		padding: 0 1rem;
 		background-color: var(--white-color);
 		border: 1px solid var(--line-color);
 	}
 
 	button {
-		margin-top: 16px;
+		margin-top: 1rem;
 	}
 
 	button,

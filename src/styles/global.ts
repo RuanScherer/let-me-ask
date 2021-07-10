@@ -9,12 +9,17 @@ export const GlobalStyles = createGlobalStyle`
 		--secondary-color: #e559f9;
 		--light-background-color: #fefefe;
 		--white-color: #fff;
+
+		@media screen and (max-width: 640px) {
+			font-size: 14px;
+		}
 	}
 	
 	* {
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+		transition: .3s;
 	}
 
 	body {
@@ -26,6 +31,6 @@ export const GlobalStyles = createGlobalStyle`
 	input,
 	button,
 	textarea {
-		font: 400 16px "Roboto", sans-serif;
+		font: 400 1rem "Roboto", sans-serif;
 	}
 `;

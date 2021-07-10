@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeaderContainer = styled.header`
-	padding: 24px;
+	padding: 1.5rem;
 	border-bottom: 1px solid #e2e2e2;
 `;
 
@@ -13,15 +13,21 @@ export const StyledHeaderContent = styled.div`
 	align-items: center;
 
 	> img {
-		max-height: 45px;
+		max-height: 2.9rem;
 	}
 
 	> div {
 		display: flex;
 
 		button {
-			height: 40px;
-			margin-left: 16px;
+			height: 2.5rem;
+			margin-left: 1rem;
+		}
+	}
+
+	@media screen and (max-width: 355px) {
+		> img {
+			max-height: 2.2rem;
 		}
 	}
 `;

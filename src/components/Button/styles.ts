@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-	height: 50px;
+	height: 3rem;
 	border-radius: 8px;
 	font-weight: 500;
 	background-color: var(--primary-color);
 	color: var(--white-color);
-	padding: 0 32px;
+	padding: 0 2rem;
 
 	display: flex;
 	justify-content: center;
@@ -16,8 +16,12 @@ export const StyledButton = styled.button`
 
 	transition: filter 0.2s;
 
+	@media screen and (max-width: 450px) {
+		padding: 0 1.5rem;
+	}
+
 	img {
-		margin-right: 8px;
+		margin-right: .5rem;
 	}
 
 	&.outlined {
