@@ -5,6 +5,7 @@ import { auth } from '../services/firebase';
 export type AuthContextType = {
 	user: UserType | undefined;
 	signInWithGoogle: () => Promise<void>;
+	signInWithFacebook: () => Promise<void>;
 	signOut: () => Promise<void>;
 }
 
@@ -37,6 +38,14 @@ export function AuthContextProvider({ children }: AuthContextProviderProps): JSX
 		fillUserData(user);
 	}
 
+	async function signInWithFacebook() {
+		const provider = new firebase.auth.FacebookAuthProvider();
+
+		const { user } = await auth.signInWithPopup(provider);
+
+		fillUserData(user);
+	}
+
 	async function signOut() {
 		await auth.signOut();
 
@@ -60,7 +69,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps): JSX
 	}
 
 	return (
-		<AuthContext.Provider value={{ user, signInWithGoogle, signOut }}>
+		<AuthContext.Provider value={{ user, signInWithGoogle, signInWithFacebook, signOut }}>
 			{children}
 		</AuthContext.Provider>
 	);

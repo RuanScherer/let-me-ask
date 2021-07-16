@@ -12,6 +12,10 @@ describe('Home Page', () => {
 			expect(screen.getByText('Crie sua sala com o Google')).toBeInTheDocument();
 		});
 
+		test('Show Facebook sign in button', () => {
+			expect(screen.getByText('Crie sua sala com o Facebook')).toBeInTheDocument();
+		});
+
 		describe('Room code input', () => {
 			test('Is shown', () => {
 				expect(getRoomCodeInputByTestId()).toBeInTheDocument();
