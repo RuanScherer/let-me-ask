@@ -15,6 +15,7 @@ import Illustration from '../../../assets/images/illustration.svg';
 import logoImg from '../../../assets/images/logo.svg';
 import googleIconImage from '../../../assets/images/google-icon.svg';
 import facebookIconImage from '../../../assets/images/facebook-icon.svg';
+import toast, { Toaster } from 'react-hot-toast';
 
 export function Home(): JSX.Element {
 	const [roomCode, setRoomCode] = useState('');
@@ -47,12 +48,12 @@ export function Home(): JSX.Element {
 		const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
 		if (!roomRef.exists()) {
-			alert('Sala não existe!');
+			toast.error('Sala não existe!');
 			return;
 		}
 
 		if (roomRef.val().closedAt) {
-			alert('A sala já está fechada!');
+			toast.error('A sala já está fechada!');
 			return;
 		}
 
@@ -60,47 +61,50 @@ export function Home(): JSX.Element {
 	}
 
 	return (
-		<StyledAuthPage>
-			<StyledAuthPageBanner>
-				<img src={Illustration} alt="" />
-				<strong>Toda pergunta tem uma resposta.</strong>
-				<p>Aprenda e compartilhe conhecimento com outras pessoas</p>
-			</StyledAuthPageBanner>
+		<>
+			<Toaster />
+			<StyledAuthPage>
+				<StyledAuthPageBanner>
+					<img src={Illustration} alt="" />
+					<strong>Toda pergunta tem uma resposta.</strong>
+					<p>Aprenda e compartilhe conhecimento com outras pessoas</p>
+				</StyledAuthPageBanner>
 
-			<StyledAuthPageMainContainer>
-				<StyledAuthPageMainContent>
-					<img src={logoImg} alt="" />
+				<StyledAuthPageMainContainer>
+					<StyledAuthPageMainContent>
+						<img src={logoImg} alt="" />
 
-					<StyledCreateRoomButton onClick={handleGoogleSignIn} backgroundColor="#ea4335">
-						<img src={googleIconImage} alt="" />
-						Crie sua sala com o Google
-					</StyledCreateRoomButton>
+						<StyledCreateRoomButton onClick={handleGoogleSignIn} backgroundColor="#ea4335">
+							<img src={googleIconImage} alt="" />
+							Crie sua sala com o Google
+						</StyledCreateRoomButton>
 
-					<StyledCreateRoomButton onClick={handleFacebookSignIn} backgroundColor="#3578e5">
-						<img src={facebookIconImage} alt="" />
-						Crie sua sala com o Facebook
-					</StyledCreateRoomButton>
+						<StyledCreateRoomButton onClick={handleFacebookSignIn} backgroundColor="#3578e5">
+							<img src={facebookIconImage} alt="" />
+							Crie sua sala com o Facebook
+						</StyledCreateRoomButton>
 
-					<StyledSeparator>
-						ou entre em uma sala
-					</StyledSeparator>
+						<StyledSeparator>
+							ou entre em uma sala
+						</StyledSeparator>
 
-					<StyledAuthPageForm onSubmit={handleJoinRoom}>
-						<input
-							type="text"
-							placeholder="Digite o código da sala"
-							id="room-code"
-							name="room-code"
-							value={roomCode}
-							onChange={event => setRoomCode(event.target.value)}
-							data-testid="room-code"
-							required
-						/>
+						<StyledAuthPageForm onSubmit={handleJoinRoom}>
+							<input
+								type="text"
+								placeholder="Digite o código da sala"
+								id="room-code"
+								name="room-code"
+								value={roomCode}
+								onChange={event => setRoomCode(event.target.value)}
+								data-testid="room-code"
+								required
+							/>
 
-						<Button type="submit">Entrar na sala</Button>
-					</StyledAuthPageForm>
-				</StyledAuthPageMainContent>
-			</StyledAuthPageMainContainer>
-		</StyledAuthPage>
+							<Button type="submit">Entrar na sala</Button>
+						</StyledAuthPageForm>
+					</StyledAuthPageMainContent>
+				</StyledAuthPageMainContainer>
+			</StyledAuthPage>
+		</>
 	);
 }
