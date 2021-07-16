@@ -8,18 +8,20 @@ import { GlobalStyles } from './styles/global';
 import { LogoutButton } from './components/LogoutButton';
 
 function App(): JSX.Element {
+
 	return (
 		<BrowserRouter>
 			<GlobalStyles />
 			<AuthContextProvider>
-				<div style={{ marginBottom: '5rem' }}>
-					<Switch>
-						<Route exact path="/" component={Home} />
-						<Route exact path="/salas/nova" component={NewRoom} />
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route exact path="/salas/nova" component={NewRoom} />
+
+					<div style={{ marginBottom: '5rem' }}>
 						<Route path="/salas/:id" component={Room} />
 						<Route path="/admin/salas/:id" component={AdminRoom} />
-					</Switch>
-				</div>
+					</div>
+				</Switch>
 				<LogoutButton />
 			</AuthContextProvider>
 		</BrowserRouter>

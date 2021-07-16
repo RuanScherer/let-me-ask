@@ -24,12 +24,11 @@ export const StyledSeparator = styled.div`
 	}
 `;
 
-export const StyledCreateRoomButton = styled.button`
-	margin-top: 4rem;
+export const StyledCreateRoomButton = styled.button<{ backgroundColor?: string }>`
 	height: 3.2rem;
 	border-radius: 8px;
 	font-weight: 500;
-	background-color: #ea4335;
+	background-color: ${props => props.backgroundColor || 'var(--primary-color)'};
 	color: var(--white-color);
 
 	display: flex;
@@ -46,5 +45,9 @@ export const StyledCreateRoomButton = styled.button`
 
 	&:hover {
 		filter: brightness(0.9);
+	}
+
+	& + & {
+		margin-top: .8rem;
 	}
 `;

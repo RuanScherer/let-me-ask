@@ -60,12 +60,13 @@ export const StyledAuthPageMainContent = styled.div`
 
 	> img {
 		align-self: center;
+		margin-bottom: 4rem
 	}
 `;
 
 export const StyledAuthPageMainTitle = styled.h2`
 	font-size: 1.5rem;
-	margin: 4rem 0 1.5rem;
+	margin: 0 0 1.5rem;
 	font-family: "Poppins", sans-serif;
 `;
 

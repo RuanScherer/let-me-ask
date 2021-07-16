@@ -14,16 +14,28 @@ import { StyledCreateRoomButton, StyledSeparator } from './styles';
 import Illustration from '../../../assets/images/illustration.svg';
 import logoImg from '../../../assets/images/logo.svg';
 import googleIconImage from '../../../assets/images/google-icon.svg';
+import facebookIconImage from '../../../assets/images/facebook-icon.svg';
 
 export function Home(): JSX.Element {
 	const [roomCode, setRoomCode] = useState('');
 	const history = useHistory();
-	const { user, signInWithGoogle } = useAuth();
+	const { user, signInWithGoogle, signInWithFacebook } = useAuth();
 
-	async function handleCreateRoom() {
+	async function handleGoogleSignIn() {
 		if (!user) {
 			await signInWithGoogle();
 		}
+		redirectToNewRoom();
+	}
+
+	async function handleFacebookSignIn() {
+		if (!user) {
+			await signInWithFacebook();
+		}
+		redirectToNewRoom();
+	}
+
+	function redirectToNewRoom() {
 		history.push('/salas/nova');
 	}
 
@@ -59,9 +71,14 @@ export function Home(): JSX.Element {
 				<StyledAuthPageMainContent>
 					<img src={logoImg} alt="" />
 
-					<StyledCreateRoomButton onClick={handleCreateRoom}>
+					<StyledCreateRoomButton onClick={handleGoogleSignIn} backgroundColor="#ea4335">
 						<img src={googleIconImage} alt="" />
 						Crie sua sala com o Google
+					</StyledCreateRoomButton>
+
+					<StyledCreateRoomButton onClick={handleFacebookSignIn} backgroundColor="#3578e5">
+						<img src={facebookIconImage} alt="" />
+						Crie sua sala com o Facebook
 					</StyledCreateRoomButton>
 
 					<StyledSeparator>
