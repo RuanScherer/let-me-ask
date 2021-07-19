@@ -10,6 +10,7 @@ export const StyledQuestion = styled.li`
 	border-radius: 8px;
 	box-shadow: 0 2px 12px rgba(255, 174, 174, 0.04);
 	padding: 1.5rem;
+	animation: fade .3s;
 
 	& + & {
 		margin: .5rem 0;
@@ -26,6 +27,16 @@ export const StyledQuestion = styled.li`
 
 	&.answered {
 		background-color: #dbdcdd;
+	}
+
+	@keyframes fade {
+		from {
+			opacity: 0
+		}
+
+		to {
+			opacity: 1
+		}
 	}
 `;
 

@@ -14,7 +14,7 @@ export const StyledButton = styled.button`
 	cursor: pointer;
 	border: 0;
 
-	transition: filter 0.2s;
+	transition: 0.2s;
 
 	@media screen and (max-width: 450px) {
 		padding: 0 1.5rem;

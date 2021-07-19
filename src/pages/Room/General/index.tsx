@@ -116,7 +116,7 @@ export function Room(): JSX.Element {
 							)
 						}
 
-						<Button type="submit" disabled={!user}>Enviar pergunta</Button>
+						<Button type="submit" disabled={!user || !newQuestion}>Enviar pergunta</Button>
 					</StyledRoomFormFooter>
 				</form>
 
