@@ -32,17 +32,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps): JSX
 
 	async function signInWithGoogle() {
 		const provider = new firebase.auth.GoogleAuthProvider();
-
-		const { user } = await auth.signInWithPopup(provider);
-
-		fillUserData(user);
+		await signIn(provider);
 	}
 
 	async function signInWithFacebook() {
 		const provider = new firebase.auth.FacebookAuthProvider();
+		await signIn(provider);
+	}
 
+	async function signIn(provider: firebase.auth.AuthProvider) {
 		const { user } = await auth.signInWithPopup(provider);
-
 		fillUserData(user);
 	}
 
